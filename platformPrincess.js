@@ -60,21 +60,23 @@ class Princess extends Sprite {
     }
     
     handleLeftArrowKey(){
+    this.playAnimation("left", false);
     this.speed = this.speedWhenWalking
     this.angle = 180;
     }
     
     handleRightArrowKey(){
+    this.playAnimation("right", false);
     this.speed = this.speedWhenWalking
     this.angle = 0;
     }
     
     handleGameLoop(){
     if (this.angle == 0 && this.speed > 0) {
-     this.playAnimation = this.handleRightArrowKey();
+     this.playAnimation("right");
 }
     if (this.angle == 180 && this.speed > 0) {
-     this.playAnimation = this.handleLeftArrowKey();
+     this.playAnimation("left");
 }
     this.x = Math.max(5, this.x);  
     this.isFalling = false;  // assume she is not falling unless proven otherwise
@@ -84,6 +86,11 @@ class Princess extends Sprite {
     if (supports.length === 0 || supports[0].y < this.y + this.height) {
      this.isFalling = true;     // she is falling so ...
      this.y = this.y + 4;       // simulate gravity
+}
+    }
+    handleSpacebar(){
+    if (!this.isFalling) {
+    this.y = this.y - 1.25 * this.height; // jump
 }
     }
 }
