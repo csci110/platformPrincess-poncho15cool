@@ -93,5 +93,26 @@ class Princess extends Sprite {
     this.y = this.y - 1.25 * this.height; // jump
 }
     }
+    handleBoundaryContact(){
+    game.end('Princess Ann has drowned.\n\nBetter luck next time, brospeh.');
+    this.true;
+    }
 }
 let ann = new Princess();
+
+class Door extends Sprite(){
+    constructor(){
+    super();
+    this.setImage("door.png");
+    this.x = game.displayWidth - 48;
+    this.y = finishPlatform.y - 2 * 48;
+    this.accelerateOnBounce = false;
+    }
+    handleCollision(otherSprite){
+    if (this.otherSprite === this.ann){
+    game.end('Congratulations!\n\nPrincess Ann can now pursue the\nstranger deeper into the castle, homie G!');
+    }
+    }
+}
+let exit = new Door();
+exit.name = "The exit door";
