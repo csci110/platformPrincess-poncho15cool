@@ -2,19 +2,6 @@ import { game, Sprite } from "../sgc/sgc.js";
 
 game.setBackground("cemetery.png", 500, 0);
 
-class wall extends Sprite {
-    constructor(x, y) {
-        super();
-        this.x = x;
-        this.y = y;
-        this.name = "A spooky castle wall";
-        this.setImage("wall.png");
-        this.accelerateOnBounce = false;
-    }
-}
-
-let Wall = new wall(0, 175);
-
 class Support extends Sprite {
     constructor(x, y, image) {
         super();
@@ -31,8 +18,8 @@ class Platform extends Support {
         this.accelerateOnBounce = false;
     }
 }
-let startPlatform = new Platform(0, 400, "start.png");
-let finishPlatform = new Platform(704, 400, "finish.png");
+let startPlatform = new Platform(0, 400, "tile7.png");
+let finishPlatform = new Platform(704, 400, "tile7.png");
 
 class Slider extends Support {
     constructor(x, y, angle) {
@@ -154,17 +141,17 @@ new Spider(200, 225);
 
 new Spider(550, 200);
 
-class Bat extends Sprite{
+class Bone extends Sprite{
     constructor(x, y){
         super();
-        this.setImage("bat.png")
+        this.setImage("bone1.png")
         this.x = x;
         this.y = y;
-        this.name = "A scary bat";
+        this.name = "A scary bone";
         this.accelerateOnBounce = false;
-        this.defineAnimation("flap", 0, 1);
-        this.playAnimation("flap", true);
-        this.attackSpeed = 300;
+        this.defineAnimation("creep", 0, 1);
+        this.playAnimation("creep", true);
+        this.attackSpeed = 100;
         this.speed = this.normalSpeed = 20;
         this.angle = 45 + Math.round(Math.random() * 3) * 90;
         this.angleTimer = 0;
@@ -178,9 +165,9 @@ class Bat extends Sprite{
     }
     
     handleGameLoop(){
-    if (Math.random() <= 0.005){
+    if (Math.random() <= 0.001){
             this.attack();
-            // if bat is not attacking: hover
+            // if bone is not attacking: hover
     if(this.speed === Math.round(this.normalSpeed)){
         let now = game.getTime();
     if (now - this.angleTimer >= 2) {
@@ -201,8 +188,8 @@ class Bat extends Sprite{
     return false;
     }
 }
-let leftBat = new Bat (200, 100);
+let leftBone = new Bone (200, 100);
 
-let rightBat = new Bat (500, 75);
+let rightBone = new Bone (500, 75);
 
 
